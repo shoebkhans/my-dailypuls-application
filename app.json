@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "MY DAILYPULS APPLICATION",
+    "slug": "dailypulse",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "dailypulse",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "supportsTablet": false
+    },
+    "android": {
+      "package": "com.anonymous.dailypulse"
+    },
+    "web": {
+      "favicon": "./assets/images/icon.png"
+    },
+    "plugins": ["expo-router", ["expo-notifications", { "color": "#D96F59" }]],
+    "splash": {
+      "backgroundColor": "#f5f3ed"
+    },
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    }
+  }
+}
