@@ -20,7 +20,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
-          cache: npm
 
       - name: Set up Java
         uses: actions/setup-java@v4
@@ -28,8 +27,24 @@ jobs:
           distribution: temurin
           java-version: "17"
 
+      - name: Pin npm version
+        run: |
+          npm install --global npm@11.6.2
+          npm --version
+
       - name: Install JavaScript dependencies
-        run: npm ci --legacy-peer-deps
+        run: |
+          npm ci --legacy-peer-deps --no-audit --no-fund --fetch-retries=5 --fetch-timeout=120000 || {
+            echo "::group::npm debug log"
+            log_file="$(ls -t "$HOME"/.npm/_logs/*-debug-0.log 2>/dev/null | head -n 1)"
+            if [ -n "$log_file" ]; then
+              tail -n 120 "$log_file"
+            else
+              echo "npm debug log not found"
+            fi
+            echo "::endgroup::"
+            exit 1
+          }
 
       - name: Generate Android project
         run: npx expo prebuild --platform android --no-install --non-interactive
