@@ -38,6 +38,17 @@ npm start
 Open the QR code in Expo Go to use the app on a phone. `npm run typecheck`
 checks the TypeScript source.
 
+## Build an Android test APK
+
+In the private GitHub repository, open **Actions** and run **Build Android
+APK**, or open the run triggered by a push to `main`. Download the
+`dailypulse-android-debug` artifact from the completed run. On your Android
+phone, open the downloaded APK and allow installation from your browser or Files
+app if Android prompts you.
+
+This debug APK is for direct testing and installation. It is not the signed
+Android App Bundle required for a Google Play release.
+
 ## Privacy and reminders
 
 Tasks, habits, moods, reflections, appearance, and reminder settings stay on
